@@ -10,7 +10,7 @@
 -- Data Ultima Alteracao ..: 
 --
 -- PROJETO => 01 Base de Dados
---         => 30 Tabelas
+--         => 25 Tabelas
 -- 
 -- -----------------------------------------------------------------
 
@@ -81,12 +81,12 @@ INSERT INTO CARGO (nome) VALUES
 ('Cargo 5');
 
 -- FUNCIONARIO
-INSERT INTO FUNCIONARIO (salarioBase, comissao, cpf, idCargo) VALUES
-(50000, 10, '12345678901', 1),
-(60000, 15, '98765432109', 2),
-(70000, 20, '11122233334', 3),
-(80000, 25, '55555555558', 4),
-(90000, 30, '99988877776', 5);
+INSERT INTO FUNCIONARIO (salarioBase, comissao, cpf, idCargo, idLoja) VALUES
+(50000, 10, '12345678901', 1, 1),
+(60000, 15, '98765432109', 2, 2),
+(70000, 20, '11122233334', 3, 3),
+(80000, 25, '55555555558', 4, 4),
+(90000, 30, '99988877776', 5, 5);
 
 -- VENDEDOR
 INSERT INTO VENDEDOR (idFuncionario) VALUES
@@ -209,12 +209,12 @@ INSERT INTO ENTREGA (idVenda, dataPrevista, dataRealizada, idTerceirizado, valor
 (5, '2023-12-05 18:50:00', '2023-12-05 18:45:00', 5, 150.00);
 
 -- FUNCIONARIOLOJA
-INSERT INTO FUNCIONARIOLOJA (idLoja, idFuncionario) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+-- INSERT INTO FUNCIONARIOLOJA (idLoja, idFuncionario) VALUES
+-- (1, 1),
+-- (2, 2),
+-- (3, 3),
+-- (4, 4),
+-- (5, 5);
 
 -- CONTRATA
 
