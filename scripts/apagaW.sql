@@ -1,0 +1,44 @@
+-- -----------     << Trabalho Final - Tema 1 >>     -------------------
+-- 
+--                    SCRIPT DE APAGA
+-- 
+-- Data Criacao ...........: 02/12/2023
+-- Autor(es) ..............: Caio Santos e Débora Moreira
+-- Banco de Dados .........: MySQL
+-- Banco de Dados(nome) ...: tf1CaioSantosDeboraMoreira
+-- 
+-- Data Ultima Alteracao ..: 
+--
+-- PROJETO => 01 Base de Dados
+--         => 30 Tabelas
+-- 
+-- -----------------------------------------------------------------
+
+USE tf1CaioSantosDeboraMoreira;
+
+DROP TABLE CONTRATA;
+DROP TABLE FUNCIONARIOLOJA;
+DROP TABLE ENTREGA;
+DROP TABLE HISTORICOCLIENTE;
+DROP TABLE FLUXODECAIXA;
+DROP TABLE PRODUTOSVENDIDOS;
+DROP TABLE PRODUTOSCOMPRADOS;
+DROP TABLE FORNECEDOR;
+DROP TABLE CATEGORIAPRODUTOFORNECEDOR;
+DROP TABLE ESTOQUE;
+DROP TABLE LOJA;
+DROP TABLE PRODUTO;
+DROP TABLE CATEGORIAPRODUTO;
+DROP TABLE PESSOAJURIDICA;
+DROP TABLE PESSOAFISICA;
+DROP TABLE VENDA;
+DROP TABLE VENDEDOR;
+DROP TABLE FUNCIONARIO;
+DROP TABLE CARGO;
+DROP TABLE CLIENTE;
+DROP TABLE PESSOA;
+DROP TABLE LEADE;
+DROP TABLE TERCEIRIZADO;
+DROP TABLE TIPOORIGEM;
+DROP TABLE CATEGORIATERCEIRIZADO;
+DROP TABLE TELEFONE;
