@@ -10,14 +10,14 @@
 -- Data Ultima Alteracao ..: 
 --
 -- PROJETO => 01 Base de Dados
---         => 30 Tabelas
+--         => 25 Tabelas
 -- 
 -- -----------------------------------------------------------------
 
 USE tf1CaioSantosDeboraMoreira;
 
 DROP TABLE CONTRATA;
-DROP TABLE FUNCIONARIOLOJA;
+-- DROP TABLE FUNCIONARIOLOJA;
 DROP TABLE ENTREGA;
 DROP TABLE HISTORICOCLIENTE;
 DROP TABLE FLUXODECAIXA;
