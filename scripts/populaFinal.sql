@@ -80,6 +80,14 @@ INSERT INTO CARGO (nome) VALUES
 ('Cargo 4'),
 ('Cargo 5');
 
+-- LOJA
+INSERT INTO LOJA (bairro, numero, estado, cidade, complemento, logradouro, telefone_PK) VALUES
+('Bairro A', 101, 'Estado A', 'Cidade A', 'Complemento A', 'Rua A', 1),
+('Bairro B', 202, 'Estado B', 'Cidade B', 'Complemento B', 'Rua B', 2),
+('Bairro C', 303, 'Estado C', 'Cidade C', 'Complemento C', 'Rua C', 3),
+('Bairro D', 404, 'Estado D', 'Cidade D', 'Complemento D', 'Rua D', 4),
+('Bairro E', 505, 'Estado E', 'Cidade E', 'Complemento E', 'Rua E', 5);
+
 -- FUNCIONARIO
 INSERT INTO FUNCIONARIO (salarioBase, comissao, cpf, idCargo, idLoja) VALUES
 (50000, 10, '12345678901', 1, 1),
@@ -113,12 +121,12 @@ INSERT INTO PESSOAFISICA (sexo, estadoCivil, rg, idCliente) VALUES
 ('M', 'Solteiro', '9998887', 5);
 
 -- PESSOAJURIDICA
-INSERT INTO PESSOAJURIDICA (cnpj, razaoSocial, nomeFantasia, inscricaoEstadual, inscricaoMunicipal, idCliente, cpf) VALUES
-('12345678901234', 'Empresa 1', 'Fantasia 1', '987654321', '654321987', 1, '12345678901'),
-('98765432109876', 'Empresa 2', 'Fantasia 2', '123456789', '321987654', 2, '98765432109'),
-('11122233344455', 'Empresa 3', 'Fantasia 3', '456789012', '789012345', 3, '11122233334'),
-('55555555555555', 'Empresa 4', 'Fantasia 4', '789012345', '012345678', 4, '55555555558'),
-('99988877766666', 'Empresa 5', 'Fantasia 5', '234567890', '456789012', 5, '99988877776');
+INSERT INTO PESSOAJURIDICA (cnpj, razaoSocial, nomeFantasia, inscricaoEstadual, inscricaoMunicipal, idCliente) VALUES
+('12345678901234', 'Empresa 1', 'Fantasia 1', '987654321', '654321987', 1),
+('98765432109876', 'Empresa 2', 'Fantasia 2', '123456789', '321987654', 2),
+('11122233344455', 'Empresa 3', 'Fantasia 3', '456789012', '789012345', 3),
+('55555555555555', 'Empresa 4', 'Fantasia 4', '789012345', '012345678', 4),
+('99988877766666', 'Empresa 5', 'Fantasia 5', '234567890', '456789012', 5);
 
 -- CATEGORIAPRODUTO
 INSERT INTO CATEGORIAPRODUTO (nome) VALUES
@@ -129,20 +137,13 @@ INSERT INTO CATEGORIAPRODUTO (nome) VALUES
 ('Categoria Produto 5');
 
 -- PRODUTO
-INSERT INTO PRODUTO (descricao, valorPorMetro, nome, FK_CATEGORIAPRODUTO_idCategoriaProduto) VALUES
-('Produto 1', 10.00, 'Nome Produto 1', 1),
-('Produto 2', 15.00, 'Nome Produto 2', 2),
-('Produto 3', 20.00, 'Nome Produto 3', 3),
-('Produto 4', 25.00, 'Nome Produto 4', 4),
-('Produto 5', 30.00, 'Nome Produto 5', 5);
+INSERT INTO PRODUTO (descricao, valorPorMetro, FK_CATEGORIAPRODUTO_idCategoriaProduto) VALUES
+('Produto 1', 10.00, 1),
+('Produto 2', 15.00, 2),
+('Produto 3', 20.00, 3),
+('Produto 4', 25.00, 4),
+('Produto 5', 30.00, 5);
 
--- LOJA
-INSERT INTO LOJA (bairro, numero, estado, cidade, complemento, logradouro, telefone_PK, gerente) VALUES
-('Bairro A', 101, 'Estado A', 'Cidade A', 'Complemento A', 'Rua A', 1, 1),
-('Bairro B', 202, 'Estado B', 'Cidade B', 'Complemento B', 'Rua B', 2, 2),
-('Bairro C', 303, 'Estado C', 'Cidade C', 'Complemento C', 'Rua C', 3, 3),
-('Bairro D', 404, 'Estado D', 'Cidade D', 'Complemento D', 'Rua D', 4, 4),
-('Bairro E', 505, 'Estado E', 'Cidade E', 'Complemento E', 'Rua E', 5, 5);
 
 -- ESTOQUE
 INSERT INTO ESTOQUE (idProduto, quantidade, idLoja) VALUES

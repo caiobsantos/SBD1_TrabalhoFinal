@@ -7,10 +7,12 @@
 -- Banco de Dados .........: MySQL
 -- Banco de Dados(nome) ...: tf1CaioSantosDeboraMoreira
 -- 
--- Data Ultima Alteracao ..: 
+-- Data Ultima Alteracao 08/12/2023:
+-- 		-Exclui tabela HISTORICOCLIENTE e adiciona tabelas VENDEDOR_LEAD e VENDEDOR_CLIENTE.
+-- 		-Adiciona script de alter table para Loja
 --
 -- PROJETO => 01 Base de Dados
---         => 25 Tabelas
+--         => 26 Tabelas
 -- 
 -- -----------------------------------------------------------------
 
@@ -111,6 +113,24 @@ CREATE TABLE IF NOT EXISTS CARGO (
     CONSTRAINT CARGO_PK PRIMARY KEY (idCargo)
 )Engine = InnoDB;
 
+CREATE TABLE IF NOT EXISTS LOJA (
+    idLoja INTEGER AUTO_INCREMENT,
+    bairro CHAR(50) NOT NULL,
+    numero INT(6) NOT NULL,
+    estado CHAR(50) NOT NULL,
+    cidade CHAR(50) NOT NULL,
+    complemento CHAR(50),
+    logradouro CHAR(50) NOT NULL,
+    telefone_PK INTEGER NOT NULL,
+    gerente INTEGER UNIQUE,
+
+    CONSTRAINT LOJA_PK PRIMARY KEY (idLoja),
+
+    CONSTRAINT FK_LOJA_1 FOREIGN KEY (telefone_PK)
+    REFERENCES telefone (telefone_PK)
+    ON DELETE NO ACTION
+) Engine = InnoDB;
+
 CREATE TABLE IF NOT EXISTS FUNCIONARIO (
     idFuncionario INTEGER AUTO_INCREMENT,
     salarioBase INTEGER NOT NULL,
@@ -133,6 +153,10 @@ CREATE TABLE IF NOT EXISTS FUNCIONARIO (
     REFERENCES LOJA (idLoja)
     ON DELETE CASCADE
 )Engine = InnoDB;
+
+ALTER TABLE LOJA
+ADD CONSTRAINT FOREIGN KEY (gerente) REFERENCES FUNCIONARIO (idFuncionario)
+ON DELETE CASCADE;
 
 CREATE TABLE IF NOT EXISTS VENDEDOR (
     idVendedor INTEGER AUTO_INCREMENT,
@@ -164,7 +188,7 @@ CREATE TABLE IF NOT EXISTS VENDA (
 CREATE TABLE IF NOT EXISTS PESSOAFISICA (
     idPessoaFisica INTEGER AUTO_INCREMENT,
     sexo CHAR(1) NOT NULL,
-    estadoCivil CHAR(4) NOT NULL,
+    estadoCivil CHAR(20) NOT NULL,
     rg CHAR(25) NOT NULL,
     idCliente INTEGER,
     
@@ -208,27 +232,6 @@ CREATE TABLE IF NOT EXISTS PRODUTO (
     CONSTRAINT FK_PRODUTO_1 FOREIGN KEY (FK_CATEGORIAPRODUTO_idCategoriaProduto)
     REFERENCES CATEGORIAPRODUTO (idCategoriaProduto)
 )Engine = InnoDB;
-
-CREATE TABLE IF NOT EXISTS LOJA (
-    idLoja INTEGER AUTO_INCREMENT,
-    bairro CHAR(50) NOT NULL,
-    numero INT(6) NOT NULL,
-    estado CHAR(50) NOT NULL,
-    cidade CHAR(50) NOT NULL,
-    complemento CHAR(50),
-    logradouro CHAR(50) NOT NULL,
-    telefone_PK INTEGER NOT NULL,
-    gerente INTEGER UNIQUE,
-
-    CONSTRAINT LOJA_PK PRIMARY KEY (idLoja),
-
-    CONSTRAINT FK_LOJA_1 FOREIGN KEY (telefone_PK)
-    REFERENCES telefone (telefone_PK)
-    ON DELETE NO ACTION,
- 
-    CONSTRAINT FK_LOJA_2 FOREIGN KEY (gerente)
-    REFERENCES FUNCIONARIO (idFuncionario)
-) Engine = InnoDB;
 
 CREATE TABLE IF NOT EXISTS ESTOQUE (
     idEstoque INTEGER AUTO_INCREMENT,
@@ -321,7 +324,7 @@ CREATE TABLE IF NOT EXISTS FLUXODECAIXA (
     REFERENCES PRODUTOSVENDIDOS (idProdutosVendidos)
 )Engine = InnoDB;
 
-CREATE TABLE IF NOT EXISTS VENDEDOR_LEAD (
+CREATE TABLE IF NOT EXISTS VENDEDOR_LEADE (
     idLeade INTEGER,
     descricaoAtendimento CHAR(255) NOT NULL,
     idVendedor INTEGER,
@@ -357,15 +360,6 @@ CREATE TABLE IF NOT EXISTS ENTREGA (
     CONSTRAINT ENTREGA_VENDA_FK FOREIGN KEY (idVenda) REFERENCES VENDA (idVenda) ON DELETE RESTRICT,
     CONSTRAINT ENTREGA_TERCEIRIZADO_FK FOREIGN KEY (idTerceirizado) REFERENCES TERCEIRIZADO (idTerceirizado) ON DELETE RESTRICT
 )Engine = InnoDB;
-
--- CREATE TABLE IF NOT EXISTS FUNCIONARIOLOJA (
---     idLoja INTEGER AUTO_INCREMENT,
---     idFuncionario INTEGER NOT NULL,
-
---     CONSTRAINT FUNCIONARIO_LOJA_UK UNIQUE (idLoja, idFuncionario),
---     CONSTRAINT FUNCIONARIOLOJA_LOJA_FK FOREIGN KEY (idLoja) REFERENCES LOJA (idLoja) ON DELETE RESTRICT,
---     CONSTRAINT FUNCIONARIOLOJA_FUNCIONARIO FOREIGN KEY (idFuncionario) REFERENCES FUNCIONARIO (idFuncionario) ON DELETE RESTRICT
--- )Engine = InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS CONTRATA (
