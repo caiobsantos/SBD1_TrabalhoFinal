@@ -192,13 +192,21 @@ INSERT INTO FLUXODECAIXA (descricao, entradaOuSaida, valor, dataRegistro, idProd
 ('Venda 4', 'E', 2500.00, '2023-12-04 14:20:00', 4, 4, 4),
 ('Venda 5', 'E', 3000.00, '2023-12-05 15:50:00', 5, 5, 5);
 
--- HISTORICOCLIENTE
-INSERT INTO HISTORICOCLIENTE (idCliente, idLeade, descricaoAtendimento, idVendedor) VALUES
-(1, 1, 'Atendimento 1', 1),
-(2, 2, 'Atendimento 2', 2),
-(3, 3, 'Atendimento 3', 3),
-(4, 4, 'Atendimento 4', 4),
-(5, 5, 'Atendimento 5', 5);
+-- VENDEDOR_LEADE
+INSERT INTO VENDEDOR_LEADE (idLeade, descricaoAtendimento, idVendedor) VALUES
+(1, 'Atendimento 1', 1),
+(2, 'Atendimento 2', 2),
+(3, 'Atendimento 3', 3),
+(4, 'Atendimento 4', 4),
+(5, 'Atendimento 5', 5);
+
+-- VENDEDOR_CLIENTE
+INSERT INTO VENDEDOR_CLIENTE (idCliente, descricaoAtendimento, idVendedor) VALUES
+(1, 'Atendimento 1', 1),
+(2, 'Atendimento 2', 2),
+(3, 'Atendimento 3', 3),
+(4, 'Atendimento 4', 4),
+(5, 'Atendimento 5', 5);
 
 -- ENTREGA
 INSERT INTO ENTREGA (idVenda, dataPrevista, dataRealizada, idTerceirizado, valorEntrega) VALUES
