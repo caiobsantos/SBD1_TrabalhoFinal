@@ -10,7 +10,7 @@
 -- Data Ultima Alteracao ..: 
 --
 -- PROJETO => 01 Base de Dados
---         => 25 Tabelas
+--         => 30 Tabelas
 -- 
 -- -----------------------------------------------------------------
 
@@ -57,12 +57,12 @@ INSERT INTO LEADE (dataNascimento, telefone_PK, email, usuarioInstagram, idTipoO
 ('1995-05-05', 5, 'lead5@email.com', 'user5', 5);
 
 -- PESSOA
-INSERT INTO PESSOA (cpf, numero, logradouro, complemento, bairro, cidade, estado, telefone_PK, dataNascimento, email) VALUES
-('12345678901', 123, 'Rua A', 'Apto 101', 'Bairro A', 'Cidade A', 'Estado A', 1, '1980-01-01', 'pessoa1@email.com'),
-('98765432109', 456, 'Rua B', 'Apto 202', 'Bairro B', 'Cidade B', 'Estado B', 2, '1985-02-15', 'pessoa2@email.com'),
-('11122233334', 789, 'Rua C', 'Apto 303', 'Bairro C', 'Cidade C', 'Estado C', 3, '1990-03-20', 'pessoa3@email.com'),
-('55555555558', 101, 'Rua D', 'Apto 404', 'Bairro D', 'Cidade D', 'Estado D', 4, '1995-04-10', 'pessoa4@email.com'),
-('99988877776', 202, 'Rua E', 'Apto 505', 'Bairro E', 'Cidade E', 'Estado E', 5, '2000-05-05', 'pessoa5@email.com');
+INSERT INTO PESSOA (cpf, numero, logradouro, complemento, bairro, cidade, estado, telefone_PK, dataNascimento, email, nome, genero) VALUES
+('12345678901', 123, 'Rua A', 'Apto 101', 'Bairro A', 'Cidade A', 'Estado A', 1, '1980-01-01', 'pessoa1@email.com', 'José', 'M'),
+('98765432109', 456, 'Rua B', 'Apto 202', 'Bairro B', 'Cidade B', 'Estado B', 2, '1985-02-15', 'pessoa2@email.com', 'Maria', 'F'),
+('11122233334', 789, 'Rua C', 'Apto 303', 'Bairro C', 'Cidade C', 'Estado C', 3, '1990-03-20', 'pessoa3@email.com', 'João', 'M'),
+('55555555558', 101, 'Rua D', 'Apto 404', 'Bairro D', 'Cidade D', 'Estado D', 4, '1995-04-10', 'pessoa4@email.com', 'Joana', 'F'),
+('99988877776', 202, 'Rua E', 'Apto 505', 'Bairro E', 'Cidade E', 'Estado E', 5, '2000-05-05', 'pessoa5@email.com', 'Carlos', 'M');
 
 -- CLIENTE
 INSERT INTO CLIENTE (idLeade, cpf) VALUES
@@ -112,6 +112,7 @@ INSERT INTO VENDA (idCliente, valorTotal, dataVenda, idVendedor) VALUES
 (4, 2500.00, '2023-12-04 14:20:00', 4),
 (5, 3000.00, '2023-12-05 15:50:00', 5);
 
+
 -- PESSOAFISICA
 INSERT INTO PESSOAFISICA (sexo, estadoCivil, rg, idCliente) VALUES
 ('M', 'Solteiro', '1234567', 1),
@@ -146,7 +147,15 @@ INSERT INTO PRODUTO (descricao, valorPorMetro, FK_CATEGORIAPRODUTO_idCategoriaPr
 
 
 -- ESTOQUE
-INSERT INTO ESTOQUE (idProduto, quantidade, idLoja) VALUES
+INSERT INTO ESTOQUE (idloja, capacidade) VALUES
+(1, 100),
+(2, 150),
+(3, 200),
+(4, 250),
+(5, 300);
+
+-- ESTOQUE_PRODUTO
+INSERT INTO ESTOQUE_PRODUTO (idProduto, quantidade, idEstoque) VALUES
 (1, 100, 1),
 (2, 150, 2),
 (3, 200, 3),
@@ -169,13 +178,21 @@ INSERT INTO FORNECEDOR (contato, nomeRepresentante, idCategoriaProduto) VALUES
 ('Contato 4', 'Representante 4', 4),
 ('Contato 5', 'Representante 5', 5);
 
+-- COMPRA
+INSERT INTO COMPRA (idLoja, valorTotal, dataCompra, idFornecedor) VALUES
+(1, 1000.00, '2023-12-01 10:00:00', 1),
+(2, 1500.00, '2023-12-02 11:30:00', 2),
+(3, 2000.00, '2023-12-03 12:45:00', 3),
+(4, 2500.00, '2023-12-04 14:20:00', 4),
+(5, 3000.00, '2023-12-05 15:50:00', 5);
+
 -- PRODUTOSCOMPRADOS
-INSERT INTO PRODUTOSCOMPRADOS (quantidade, valorCompra, dataCompra, idLoja, idEstoque, idFornecedor, idProduto) VALUES
-(50, 500.00, '2023-12-01 10:00:00', 1, 1, 1, 1),
-(75, 750.00, '2023-12-02 11:30:00', 2, 2, 2, 2),
-(100, 1000.00, '2023-12-03 12:45:00', 3, 3, 3, 3),
-(125, 1250.00, '2023-12-04 14:20:00', 4, 4, 4, 4),
-(150, 1500.00, '2023-12-05 15:50:00', 5, 5, 5, 5);
+INSERT INTO PRODUTOSCOMPRADOS (quantidade, idCompra, idEstoque, idProduto) VALUES
+(50, 1, 1, 1),
+(75, 2, 2, 2),
+(100, 3, 3, 3),
+(125, 4, 4, 4),
+(150, 5, 5, 5);
 
 -- PRODUTOSVENDIDOS
 INSERT INTO PRODUTOSVENDIDOS (quantidade, idEstoque, idProduto, idVenda) VALUES
@@ -185,13 +202,29 @@ INSERT INTO PRODUTOSVENDIDOS (quantidade, idEstoque, idProduto, idVenda) VALUES
 (40, 4, 4, 4),
 (50, 5, 5, 5);
 
--- FLUXODECAIXA
-INSERT INTO FLUXODECAIXA (descricao, entradaOuSaida, valor, dataRegistro, idProdutosComprados, idLoja, idProdutosVendidos) VALUES
-('Venda 1', 'E', 1000.00, '2023-12-01 10:00:00', 1, 1, 1),
-('Venda 2', 'E', 1500.00, '2023-12-02 11:30:00', 2, 2, 2),
-('Venda 3', 'E', 2000.00, '2023-12-03 12:45:00', 3, 3, 3),
-('Venda 4', 'E', 2500.00, '2023-12-04 14:20:00', 4, 4, 4),
-('Venda 5', 'E', 3000.00, '2023-12-05 15:50:00', 5, 5, 5);
+-- TIPO_GASTO_EXTRA
+INSERT INTO TIPO_GASTO_EXTRA (idTipoGasto, descricao) VALUES
+(1, 'Tipo 1'),
+(2, 'Tipo 2'),
+(3, 'Tipo 3'),
+(4, 'Tipo 4'),
+(5, 'Tipo 5');
+
+-- GASTO_EXTRA
+INSERT INTO GASTO_EXTRA (idGastoExtra, valorGastoExtra, dataGastoExtra, idTipoGasto) VALUES
+(1, 1000.00, '2023-12-01 10:00:00', 1),
+(2, 1500.00, '2023-12-02 11:30:00', 2),
+(3, 2000.00, '2023-12-03 12:45:00', 3),
+(4, 2500.00, '2023-12-04 14:20:00', 4),
+(5, 3000.00, '2023-12-05 15:50:00', 5);
+
+-- LOJA_GASTO_EXTRA
+INSERT INTO LOJA_GASTO_EXTRA (idGastoExtra, idLoja, idLojaGastoExtra) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 4, 4),
+(5, 5, 5);
 
 -- VENDEDOR_LEADE
 INSERT INTO VENDEDOR_LEADE (idLeade, descricaoAtendimento, idVendedor) VALUES
@@ -217,13 +250,6 @@ INSERT INTO ENTREGA (idVenda, dataPrevista, dataRealizada, idTerceirizado, valor
 (4, '2023-12-04 17:20:00', '2023-12-04 17:15:00', 4, 125.00),
 (5, '2023-12-05 18:50:00', '2023-12-05 18:45:00', 5, 150.00);
 
--- FUNCIONARIOLOJA
--- INSERT INTO FUNCIONARIOLOJA (idLoja, idFuncionario) VALUES
--- (1, 1),
--- (2, 2),
--- (3, 3),
--- (4, 4),
--- (5, 5);
 
 -- CONTRATA
 
