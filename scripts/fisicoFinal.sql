@@ -5,7 +5,7 @@
 -- Data Criacao ...........: 02/12/2023
 -- Autor(es) ..............: Caio Santos e Débora Moreira
 -- Banco de Dados .........: MySQL
--- Banco de Dados(nome) ...: tf1CaioSantosDeboraMoreira
+-- Base de Dados(nome) ...: TF_1C1_caiosantos
 -- 
 -- Ultimas Alteracoes:
 --   08/12/2023 => Exclui tabela HISTORICOCLIENTE e adiciona tabelas VENDEDOR_LEAD e VENDEDOR_CLIENTE.
@@ -20,9 +20,9 @@
 
 -- BASE DE DADOS
 CREATE DATABASE
-  IF NOT EXISTS tf1CaioSantosDeboraMoreira;
+  IF NOT EXISTS TF_1C1_caiosantos;
 
-USE tf1CaioSantosDeboraMoreira;
+USE TF_1C1_caiosantos;
 
 
 -- TABELAS

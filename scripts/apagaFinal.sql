@@ -5,7 +5,7 @@
 -- Data Criacao ...........: 02/12/2023
 -- Autor(es) ..............: Caio Santos e Débora Moreira
 -- Banco de Dados .........: MySQL
--- Banco de Dados(nome) ...: tf1CaioSantosDeboraMoreira
+-- Base de Dados(nome) ...: TF_1C1_caiosantos
 -- 
 -- Data Ultima Alteracao ..: 
 --
@@ -14,7 +14,7 @@
 -- 
 -- -----------------------------------------------------------------
 
-USE tf1CaioSantosDeboraMoreira;
+USE TF_1C1_caiosantos;
 
 DROP TABLE IF EXISTS CONTRATA;
 DROP TABLE IF EXISTS ENTREGA;

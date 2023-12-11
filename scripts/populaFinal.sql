@@ -5,7 +5,7 @@
 -- Data Criacao ...........: 02/12/2023
 -- Autor(es) ..............: Caio Santos e Débora Moreira
 -- Banco de Dados .........: MySQL
--- Banco de Dados(nome) ...: tf1CaioSantosDeboraMoreira
+-- Base de Dados(nome) ...: TF_1C1_caiosantos
 -- 
 -- Data Ultima Alteracao ..: 
 --
@@ -15,6 +15,7 @@
 -- -----------------------------------------------------------------
 
 -- SCRIPT DE POPULAÇÃO
+USE TF_1C1_caiosantos;
 
 -- TELEFONE
 INSERT INTO TELEFONE (telefone) VALUES
