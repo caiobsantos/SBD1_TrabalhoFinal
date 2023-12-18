@@ -2,16 +2,11 @@
 -- 
 --                    SCRIPT DE CRIACAO (DDL)
 -- 
--- Data Criacao ...........: 02/12/2023
--- Autor(es) ..............: Caio Santos e Débora Moreira
+-- Data Criacao ...........: 15/12/2023
+-- Autor(es) ..............: Caio Santos, Débora Moreira, Gabriel Freitas Balbino e Hugo Aragao de Oliveira
 -- Banco de Dados .........: MySQL
--- Base de Dados(nome) ...: TF_1C1_caiosantos
+-- Base de Dados(nome) ...: TF_1C_caiosantos
 -- 
--- Ultimas Alteracoes:
---   08/12/2023 => Exclui tabela HISTORICOCLIENTE e adiciona tabelas VENDEDOR_LEAD e VENDEDOR_CLIENTE.
---              => Adiciona script de alter table para Loja.
---   11/12/2018 => Exclui tabela de fluxo de caixa e cria as seguintes tabelas:
---                 	COMPRA, ESTOQUE_PRODUTO, LOJA_GASTO_EXTRA, GASTO_EXTRA e TIPO_GASTO_EXTRA 
 --
 -- PROJETO => 01 Base de Dados
 --         => 30 Tabelas
@@ -20,9 +15,9 @@
 
 -- BASE DE DADOS
 CREATE DATABASE
-  IF NOT EXISTS TF_1C1_caiosantos;
+  IF NOT EXISTS TF_1C_caiosantos;
 
-USE TF_1C1_caiosantos;
+USE TF_1C_caiosantos;
 
 
 -- TABELAS
@@ -145,6 +140,7 @@ CREATE TABLE IF NOT EXISTS FUNCIONARIO (
     cpf CHAR(11) NOT NULL,
     idCargo INTEGER NOT NULL,
     idLoja INTEGER NOT NULL,
+    dataContratacao TIMESTAMP NOT NULL,
 
     CONSTRAINT FUNCIONARIO_PK PRIMARY KEY (idFuncionario),
     CONSTRAINT FUNCIONARIO_UNIQUE UNIQUE (cpf),
@@ -307,6 +303,7 @@ CREATE TABLE IF NOT EXISTS PRODUTOSCOMPRADOS (
     quantidade INTEGER NOT NULL CHECK (quantidade > 0),
     idEstoque INTEGER NOT NULL,
     idProduto INTEGER NOT NULL,
+    valorProduto FLOAT NOT NULL,
 
     CONSTRAINT PRODUTOSCOMPRADOS_PK PRIMARY KEY (idCompra, idProduto),
     CONSTRAINT PRODUTOSCOMPRADOS_ESTOQUE_FK FOREIGN KEY (idEstoque) REFERENCES ESTOQUE (idEstoque) ON DELETE RESTRICT,
@@ -319,6 +316,8 @@ CREATE TABLE IF NOT EXISTS PRODUTOSVENDIDOS (
     idEstoque INTEGER NOT NULL,
     idProduto INTEGER NOT NULL,
     idVenda INTEGER NOT NULL,
+    valorProduto FLOAT NOT NULL, 
+    descontoAplicado INTEGER,
     
     CONSTRAINT PRODUTOSVENDIDOS_PK PRIMARY KEY (idProduto, idVenda),
     CONSTRAINT PRODUTOSVENDIDOS_ESTOQUE_FK FOREIGN KEY (idEstoque) REFERENCES ESTOQUE (idEstoque) ON DELETE RESTRICT,
